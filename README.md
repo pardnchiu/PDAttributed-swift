@@ -67,15 +67,15 @@ style.lineBreakMode = .byTruncatingTail;
 style.minimumLineHeight = 80
 
 let attributes: [NSAttributedString.Key:Any] = [
-    .paragraphStyle 		: style,
-    .kern           		: 11,
-    .font           		: UIFont.systemFont(ofSize: 17, weight: .bold),
-    .foregroundColor		: UIColor.yellow,
-    .strikethroughStyle	: NSNumber(value: NSUnderlineStyle.double.rawValue),
-    .strikethroughColor	: UIColor.green,
-    .underlineStyle			: NSNumber(value: NSUnderlineStyle.single.rawValue),
-    .underlineColor			: UIColor.blue,
-    .baselineOffset			: 30
+    .paragraphStyle: style,
+    .kern: 11,
+    .font: UIFont.systemFont(ofSize: 17, weight: .bold),
+    .foregroundColor: UIColor.yellow,
+    .strikethroughStyle: NSNumber(value: NSUnderlineStyle.double.rawValue),
+    .strikethroughColor: UIColor.green,
+    .underlineStyle: NSNumber(value: NSUnderlineStyle.single.rawValue),
+    .underlineColor: UIColor.blue,
+    .baselineOffset: 30
 ];
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 ```
