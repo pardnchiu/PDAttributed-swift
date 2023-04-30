@@ -39,9 +39,12 @@ maxH         最高行高
 dir          書寫方向
 ```
 
-#### 簡化前
+#### 範例
+![PDAttribute Swift 範例](./sample.jpg)
 
 ```
+// MARK: 簡化前
+
 let label = UILabel(frame: CGRect(x: 0, y: 100, width: 300, height: 100));
 label.backgroundColor = .red;
 
@@ -64,8 +67,8 @@ let attributes: [NSAttributedString.Key:Any] = [
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 ```
 
-#### 簡化後
 ```
+// MARK: 簡化後
 var label = UILabel(frame: CGRect(x: 0, y: 100, width: 300, height: 100));
 label.backgroundColor = .red;
 label
