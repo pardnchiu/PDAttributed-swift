@@ -1,7 +1,20 @@
 #### 參數
 
 ```
-txt
+顏色 HEX（字串 ex. "ff0000"）
+顏色 RGB（字串 ex. "255/0/0"）
+
+txt, clr        文字／顏色
+txt, hex        文字／顏色 HEX
+txt, rgb        文字／顏色 RGB
+txt, clr, align 文字／顏色 RGB／對齊
+txt, hex, align 文字／顏色 HEX／對齊
+txt, rgb, align 文字／顏色／對齊
+clr, align      顏色／對齊
+hex, align      顏色 HEX／對齊
+rgb, align      顏色 RGB／對齊
+
+txt          文字
 ligature     連體字
 font         字體
 name, size   字體名稱／尺寸
@@ -11,11 +24,11 @@ size, weight 系統字體／尺寸／粗細
 weight       系統字體／粗細
 italic       系統斜體／尺寸
 clr          字體顏色
-hex          字體顏色（字串 ex. "ffff00"）
-rgb          字體顏色（字串 ex. "255/0/255"）
+hex          字體顏色 HEX
+rgb          字體顏色 RGB
 bgClr        文字背景
-bgHex        文字背景（字串 ex. "ffff00"）
-bgRgb        文字背景（字串 ex. "ffff00"）
+bgHex        文字背景 HEX
+bgRgb        文字背景 RGB
 charSpacing  字間距
 strike       刪除線
 strikeClr    刪除線顏色

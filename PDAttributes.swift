@@ -74,6 +74,9 @@ extension UIButton {
 	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
 	func attr(txt: String, hex: String, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
 	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(clr: UIColor, align: NSTextAlignment) -> UIButton { self.attr(clr: clr).attr(align: align); };
+	func attr(hex: String, align: NSTextAlignment) -> UIButton { self.attr(hex: hex).attr(align: align); };
+	func attr(rgb: String, align: NSTextAlignment) -> UIButton { self.attr(rgb: rgb).attr(align: align); };
 
 	func attr(txt: String) -> UIButton { self.attrTxt = addValue(nil, txt); return self; };
 	func attr(ligature: Bool)-> UIButton { self.attrTxt = addValue(.ligature, ligature); return self; };
@@ -178,6 +181,9 @@ extension UILabel {
 	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
 	func attr(txt: String, hex: String, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
 	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(clr: UIColor, align: NSTextAlignment) -> UILabel { self.attr(clr: clr).attr(align: align); };
+	func attr(hex: String, align: NSTextAlignment) -> UILabel { self.attr(hex: hex).attr(align: align); };
+	func attr(rgb: String, align: NSTextAlignment) -> UILabel { self.attr(rgb: rgb).attr(align: align); };
 
 	func attr(txt: String) -> UILabel { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
 	func attr(ligature: Bool)-> UILabel { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
@@ -261,7 +267,7 @@ extension UILabel {
 	};
 };
 
-public extension UITextField {
+extension UITextField {
 
 	var font			: UIFont 	{ get { return UILabel().font } }
 	var fontName	: String 	{ get { return self.font.fontName == ".SFUI-Regular" ? "Helvetica" : self.font.fontName } };
@@ -289,6 +295,9 @@ public extension UITextField {
 	func attr(txt: String, clr: UIColor, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(clr: clr, target).attr(align: align, target); };
 	func attr(txt: String, hex: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(hex: hex, target).attr(align: align, target); };
 	func attr(txt: String, rgb: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(rgb: rgb, target).attr(align: align, target); };
+	func attr(clr: UIColor, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(clr: clr, target).attr(align: align, target); };
+	func attr(hex: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(hex: hex, target).attr(align: align, target); };
+	func attr(rgb: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(rgb: rgb, target).attr(align: align, target); };
 
 	func attr(txt: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
@@ -727,6 +736,9 @@ extension UITextView {
 	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
 	func attr(txt: String, hex: String, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
 	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(clr: UIColor, align: NSTextAlignment) -> UITextView { self.attr(clr: clr).attr(align: align); };
+	func attr(hex: String, align: NSTextAlignment) -> UITextView { self.attr(hex: hex).attr(align: align); };
+	func attr(rgb: String, align: NSTextAlignment) -> UITextView { self.attr(rgb: rgb).attr(align: align); };
 
 	func attr(txt: String) -> UITextView { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
 	func attr(ligature: Bool) -> UITextView { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
