@@ -62,7 +62,7 @@ let label = UILabel(frame: CGRect(x: 0, y: 100, width: 300, height: 100));
 label.backgroundColor = .red;
 
 let style = NSMutableParagraphStyle();
-style.alignment     = .center;
+style.alignment = .center;
 style.lineBreakMode = .byTruncatingTail;
 style.minimumLineHeight = 80
 
