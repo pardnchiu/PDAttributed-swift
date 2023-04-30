@@ -18,7 +18,7 @@ extension UIView {
 extension UIColor {
 
 	@objc convenience init(rgb red: CGFloat,_ green: CGFloat,_ blue: CGFloat,_ alpha: CGFloat) 	{ self.init(red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha); };
-	@objc convenience init(rgb red: CGFloat,_ green: CGFloat,_ blue: CGFloat) 									{ self.init(rgb: red, green, blue, 1); };
+	@objc convenience init(rgb red: CGFloat,_ green: CGFloat,_ blue: CGFloat) { self.init(rgb: red, green, blue, 1); };
 	@objc convenience init(rgb value: String) {
 		let ary = value.split(separator: "/");
 		if let red = Double(ary[0]), let green = Double(ary[1]), let blue = Double(ary[2]) {
@@ -31,7 +31,6 @@ extension UIColor {
 			self.init(rgb: 255, 255, 255, 0);
 		};
 	};
-
 	@objc convenience init(hex value: String) 	{
 		let str: String = value.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "#", with: "", options: .literal, range: nil);
 		var rgb: UInt64 = 0;
@@ -69,53 +68,53 @@ extension UIButton {
 	var txtLabel: UILabel { get { return self.titleLabel ?? UILabel() } };
 	var attrTxt: NSAttributedString { get { return self.currentAttributedTitle ?? NSAttributedString(string: self.currentTitle ?? "") } set { self.setAttributedTitle(newValue, for: .normal); } };
 
-	func attr(txt: String, clr: UIColor) 													-> UIButton { self.attr(txt: txt).attr(clr: clr); };
-	func attr(txt: String, hex: String) 													-> UIButton { self.attr(txt: txt).attr(hex: hex); };
-	func attr(txt: String, rgb: String) 													-> UIButton { self.attr(txt: txt).attr(rgb: rgb); };
-	func attr(txt: String, clr: UIColor, align: NSTextAlignment) 	-> UIButton { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
-	func attr(txt: String, hex: String, align: NSTextAlignment) 	-> UIButton { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
-	func attr(txt: String, rgb: String, align: NSTextAlignment) 	-> UIButton { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(txt: String, clr: UIColor) -> UIButton { self.attr(txt: txt).attr(clr: clr); };
+	func attr(txt: String, hex: String) -> UIButton { self.attr(txt: txt).attr(hex: hex); };
+	func attr(txt: String, rgb: String) -> UIButton { self.attr(txt: txt).attr(rgb: rgb); };
+	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
+	func attr(txt: String, hex: String, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
+	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UIButton { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
 
-	func attr(txt: String) 																-> UIButton { self.attrTxt = addValue(nil, txt); return self; };
-	func attr(ligature: Bool)															-> UIButton { self.attrTxt = addValue(.ligature, ligature); return self; };
-	func attr(font: UIFont) 															-> UIButton { self.attrTxt = addValue(.font, font); return self; };
-	func attr(name: String, size: CGFloat) 								-> UIButton { self.attrTxt = addValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
-	func attr(name: String) 															-> UIButton { self.attrTxt = addValue(.font, UIFont(name: name, size: self.txtLabel.fontSize) ?? defaultFont); return self; };
-	func attr(size: CGFloat) 															-> UIButton { self.attrTxt = addValue(.font, UIFont(name: self.txtLabel.fontName, size: size) ?? defaultFont); return self; };
-	func attr(size: CGFloat, weight: UIFont.Weight) 			-> UIButton { self.attrTxt = addValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
-	func attr(weight: UIFont.Weight) 											-> UIButton { self.attrTxt = addValue(.font, UIFont.systemFont(ofSize: self.txtLabel.fontSize, weight: weight)); return self; };
-	func attr(italic size: CGFloat) 											-> UIButton { self.attrTxt = addValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
-	func attr(clr: UIColor) 															-> UIButton { self.attrTxt = addValue(.foregroundColor, clr); return self; };
-	func attr(hex: String) 																-> UIButton { self.attrTxt = addValue(.foregroundColor, UIColor(hex: hex)); return self; };
-	func attr(rgb: String) 																-> UIButton { self.attrTxt = addValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
-	func attr(bgClr: UIColor) 														-> UIButton { self.attrTxt = addValue(.backgroundColor, bgClr); return self; };
-	func attr(bgHex: String) 															-> UIButton { self.attrTxt = addValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
-	func attr(bgRgb: String) 															-> UIButton { self.attrTxt = addValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
-	func attr(charSpacing: CGFloat) 											-> UIButton { self.attrTxt = addValue(.kern, charSpacing); return self; };
-	func attr(strike: NSUnderlineStyle)										-> UIButton { self.attrTxt = addValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; }
-	func attr(strikeClr: UIColor)													-> UIButton { self.attrTxt = addValue(.strikethroughColor, strikeClr); return self; }
-	func attr(under: NSUnderlineStyle)										-> UIButton { self.attrTxt = addValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; }
-	func attr(underClr: UIColor)													-> UIButton { self.attrTxt = addValue(.underlineColor, underClr); return self; }
-	func attr(stokeW: CGFloat)														-> UIButton { self.attrTxt = addValue(.strokeWidth, stokeW); return self; }
-	func attr(stokeClr: UIColor)													-> UIButton { self.attrTxt = addValue(.strokeColor, stokeClr); return self; }
-	func attr(offset: CGFloat)														-> UIButton { self.attrTxt = addValue(.baselineOffset, offset); return self; }
-	func attr(url: String)																-> UIButton { self.attrTxt = addValue(.link, url); return self; }
-	func attr(url: URL)																		-> UIButton { self.attrTxt = addValue(.link, url); return self; }
-	func attr(oblique: CGFloat)														-> UIButton { self.attrTxt = addValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; }
-	func attr(expand: CGFloat)														-> UIButton { self.attrTxt = addValue(.expansion, expand); return self; }
+	func attr(txt: String) -> UIButton { self.attrTxt = addValue(nil, txt); return self; };
+	func attr(ligature: Bool)-> UIButton { self.attrTxt = addValue(.ligature, ligature); return self; };
+	func attr(font: UIFont) -> UIButton { self.attrTxt = addValue(.font, font); return self; };
+	func attr(name: String, size: CGFloat) -> UIButton { self.attrTxt = addValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
+	func attr(name: String) -> UIButton { self.attrTxt = addValue(.font, UIFont(name: name, size: self.txtLabel.fontSize) ?? defaultFont); return self; };
+	func attr(size: CGFloat) -> UIButton { self.attrTxt = addValue(.font, UIFont(name: self.txtLabel.fontName, size: size) ?? defaultFont); return self; };
+	func attr(size: CGFloat, weight: UIFont.Weight) -> UIButton { self.attrTxt = addValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
+	func attr(weight: UIFont.Weight) -> UIButton { self.attrTxt = addValue(.font, UIFont.systemFont(ofSize: self.txtLabel.fontSize, weight: weight)); return self; };
+	func attr(italic size: CGFloat) -> UIButton { self.attrTxt = addValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
+	func attr(clr: UIColor) -> UIButton { self.attrTxt = addValue(.foregroundColor, clr); return self; };
+	func attr(hex: String) -> UIButton { self.attrTxt = addValue(.foregroundColor, UIColor(hex: hex)); return self; };
+	func attr(rgb: String) -> UIButton { self.attrTxt = addValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
+	func attr(bgClr: UIColor) -> UIButton { self.attrTxt = addValue(.backgroundColor, bgClr); return self; };
+	func attr(bgHex: String) -> UIButton { self.attrTxt = addValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
+	func attr(bgRgb: String) -> UIButton { self.attrTxt = addValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
+	func attr(charSpacing: CGFloat) -> UIButton { self.attrTxt = addValue(.kern, charSpacing); return self; };
+	func attr(strike: NSUnderlineStyle)	-> UIButton { self.attrTxt = addValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; }
+	func attr(strikeClr: UIColor) -> UIButton { self.attrTxt = addValue(.strikethroughColor, strikeClr); return self; }
+	func attr(under: NSUnderlineStyle)	-> UIButton { self.attrTxt = addValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; }
+	func attr(underClr: UIColor) -> UIButton { self.attrTxt = addValue(.underlineColor, underClr); return self; }
+	func attr(stokeW: CGFloat) -> UIButton { self.attrTxt = addValue(.strokeWidth, stokeW); return self; }
+	func attr(stokeClr: UIColor) -> UIButton { self.attrTxt = addValue(.strokeColor, stokeClr); return self; }
+	func attr(offset: CGFloat) -> UIButton { self.attrTxt = addValue(.baselineOffset, offset); return self; }
+	func attr(url: String)	-> UIButton { self.attrTxt = addValue(.link, url); return self; }
+	func attr(url: URL) -> UIButton { self.attrTxt = addValue(.link, url); return self; }
+	func attr(oblique: CGFloat) -> UIButton { self.attrTxt = addValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; }
+	func attr(expand: CGFloat) -> UIButton { self.attrTxt = addValue(.expansion, expand); return self; }
 	func attr(effect: NSAttributedString.TextEffectStyle) -> UIButton { self.attrTxt = addValue(.textEffect, effect); return self; }
-	func attr(vert: Bool)																	-> UIButton { self.attrTxt = addValue(.verticalGlyphForm, vert); return self; }
+	func attr(vert: Bool) -> UIButton { self.attrTxt = addValue(.verticalGlyphForm, vert); return self; }
 
-	func attr(align: NSTextAlignment) 	-> UIButton { self.attrTxt = addStyle({ style in style.alignment = align; }); return self; };
-	func attr(wrap: NSLineBreakMode) 		-> UIButton { self.attrTxt = addStyle({ style in style.lineBreakMode = wrap; }); return self; };
-	func attr(lineSpacing: CGFloat) 		-> UIButton { self.attrTxt = addStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
-	func attr(paraSpacing: CGFloat) 		-> UIButton { self.attrTxt = addStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
-	func attr(firstIndent: CGFloat) 		-> UIButton { self.attrTxt = addStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
-	func attr(headIndent: CGFloat) 			-> UIButton { self.attrTxt = addStyle({ style in style.headIndent = headIndent; }); return self; };
-	func attr(tailIndent: CGFloat) 			-> UIButton { self.attrTxt = addStyle({ style in style.tailIndent = tailIndent; }); return self; };
-	func attr(minH: CGFloat) 						-> UIButton { self.attrTxt = addStyle({ style in style.minimumLineHeight = minH; }); return self; };
-	func attr(maxH: CGFloat) 						-> UIButton { self.attrTxt = addStyle({ style in style.maximumLineHeight = maxH; }); return self; };
-	func attr(dir: NSWritingDirection) 	-> UIButton { self.attrTxt = addStyle({ style in style.baseWritingDirection = dir; }); return self; };
+	func attr(align: NSTextAlignment) -> UIButton { self.attrTxt = addStyle({ style in style.alignment = align; }); return self; };
+	func attr(wrap: NSLineBreakMode) -> UIButton { self.attrTxt = addStyle({ style in style.lineBreakMode = wrap; }); return self; };
+	func attr(lineSpacing: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
+	func attr(paraSpacing: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
+	func attr(firstIndent: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
+	func attr(headIndent: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.headIndent = headIndent; }); return self; };
+	func attr(tailIndent: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.tailIndent = tailIndent; }); return self; };
+	func attr(minH: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.minimumLineHeight = minH; }); return self; };
+	func attr(maxH: CGFloat) -> UIButton { self.attrTxt = addStyle({ style in style.maximumLineHeight = maxH; }); return self; };
+	func attr(dir: NSWritingDirection) -> UIButton { self.attrTxt = addStyle({ style in style.baseWritingDirection = dir; }); return self; };
 
 	private func addValue(_ key: NSAttributedString.Key?,_ value: Any) -> NSAttributedString {
 		let oldtxt = self.attrTxt;
@@ -173,53 +172,53 @@ extension UILabel {
 	};
 	var attrTxt: NSAttributedString { get { return self.attributedText ?? NSAttributedString(string: self.text ?? "") } set { self.attributedText = newValue } };
 
-	func attr(txt: String, clr: UIColor) 													-> UILabel { self.attr(txt: txt).attr(clr: clr); };
-	func attr(txt: String, hex: String) 													-> UILabel { self.attr(txt: txt).attr(hex: hex); };
-	func attr(txt: String, rgb: String) 													-> UILabel { self.attr(txt: txt).attr(rgb: rgb); };
-	func attr(txt: String, clr: UIColor, align: NSTextAlignment) 	-> UILabel { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
-	func attr(txt: String, hex: String, align: NSTextAlignment) 	-> UILabel { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
-	func attr(txt: String, rgb: String, align: NSTextAlignment) 	-> UILabel { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(txt: String, clr: UIColor) -> UILabel { self.attr(txt: txt).attr(clr: clr); };
+	func attr(txt: String, hex: String) -> UILabel { self.attr(txt: txt).attr(hex: hex); };
+	func attr(txt: String, rgb: String) -> UILabel { self.attr(txt: txt).attr(rgb: rgb); };
+	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
+	func attr(txt: String, hex: String, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
+	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UILabel { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
 
-	func attr(txt: String) 																-> UILabel { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
-	func attr(ligature: Bool)															-> UILabel { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
-	func attr(font: UIFont) 															-> UILabel { self.attrTxt = setAttrKeyValue(.font, font); return self; };
-	func attr(name: String, size: CGFloat) 								-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
-	func attr(name: String) 															-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: self.fontSize) ?? defaultFont); return self; };
-	func attr(size: CGFloat) 															-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: self.fontName, size: size) ?? defaultFont); return self; };
-	func attr(size: CGFloat, weight: UIFont.Weight) 			-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
-	func attr(weight: UIFont.Weight) 											-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: self.fontSize, weight: weight)); return self; };
-	func attr(italic size: CGFloat) 											-> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
-	func attr(clr: UIColor) 															-> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, clr); return self; };
-	func attr(hex: String) 																-> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(hex: hex)); return self; };
-	func attr(rgb: String) 																-> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
-	func attr(bgClr: UIColor) 														-> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, bgClr); return self; };
-	func attr(bgHex: String) 															-> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
-	func attr(bgRgb: String) 															-> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
-	func attr(charSpacing: CGFloat) 											-> UILabel { self.attrTxt = setAttrKeyValue(.kern, charSpacing); return self; };
-	func attr(strike: NSUnderlineStyle)										-> UILabel { self.attrTxt = setAttrKeyValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; }
-	func attr(strikeClr: UIColor)													-> UILabel { self.attrTxt = setAttrKeyValue(.strikethroughColor, strikeClr); return self; }
-	func attr(under: NSUnderlineStyle)										-> UILabel { self.attrTxt = setAttrKeyValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; }
-	func attr(underClr: UIColor)													-> UILabel { self.attrTxt = setAttrKeyValue(.underlineColor, underClr); return self; }
-	func attr(stokeW: CGFloat)														-> UILabel { self.attrTxt = setAttrKeyValue(.strokeWidth, stokeW); return self; }
-	func attr(stokeClr: UIColor)													-> UILabel { self.attrTxt = setAttrKeyValue(.strokeColor, stokeClr); return self; }
-	func attr(offset: CGFloat)														-> UILabel { self.attrTxt = setAttrKeyValue(.baselineOffset, offset); return self; }
-	func attr(url: String)																-> UILabel { self.attrTxt = setAttrKeyValue(.link, url); return self; }
-	func attr(url: URL)																		-> UILabel { self.attrTxt = setAttrKeyValue(.link, url); return self; }
-	func attr(oblique: CGFloat)														-> UILabel { self.attrTxt = setAttrKeyValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; }
-	func attr(expand: CGFloat)														-> UILabel { self.attrTxt = setAttrKeyValue(.expansion, expand); return self; }
+	func attr(txt: String) -> UILabel { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
+	func attr(ligature: Bool)-> UILabel { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
+	func attr(font: UIFont) -> UILabel { self.attrTxt = setAttrKeyValue(.font, font); return self; };
+	func attr(name: String, size: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
+	func attr(name: String) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: self.fontSize) ?? defaultFont); return self; };
+	func attr(size: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont(name: self.fontName, size: size) ?? defaultFont); return self; };
+	func attr(size: CGFloat, weight: UIFont.Weight) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
+	func attr(weight: UIFont.Weight) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: self.fontSize, weight: weight)); return self; };
+	func attr(italic size: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
+	func attr(clr: UIColor) -> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, clr); return self; };
+	func attr(hex: String) -> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(hex: hex)); return self; };
+	func attr(rgb: String) -> UILabel { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
+	func attr(bgClr: UIColor) -> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, bgClr); return self; };
+	func attr(bgHex: String) -> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
+	func attr(bgRgb: String) -> UILabel { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
+	func attr(charSpacing: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.kern, charSpacing); return self; };
+	func attr(strike: NSUnderlineStyle)	-> UILabel { self.attrTxt = setAttrKeyValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; }
+	func attr(strikeClr: UIColor) -> UILabel { self.attrTxt = setAttrKeyValue(.strikethroughColor, strikeClr); return self; }
+	func attr(under: NSUnderlineStyle)	-> UILabel { self.attrTxt = setAttrKeyValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; }
+	func attr(underClr: UIColor) -> UILabel { self.attrTxt = setAttrKeyValue(.underlineColor, underClr); return self; }
+	func attr(stokeW: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.strokeWidth, stokeW); return self; }
+	func attr(stokeClr: UIColor) -> UILabel { self.attrTxt = setAttrKeyValue(.strokeColor, stokeClr); return self; }
+	func attr(offset: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.baselineOffset, offset); return self; }
+	func attr(url: String)	-> UILabel { self.attrTxt = setAttrKeyValue(.link, url); return self; }
+	func attr(url: URL) -> UILabel { self.attrTxt = setAttrKeyValue(.link, url); return self; }
+	func attr(oblique: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; }
+	func attr(expand: CGFloat) -> UILabel { self.attrTxt = setAttrKeyValue(.expansion, expand); return self; }
 	func attr(effect: NSAttributedString.TextEffectStyle) -> UILabel { self.attrTxt = setAttrKeyValue(.textEffect, effect); return self; }
-	func attr(vert: Bool)																	-> UILabel { self.attrTxt = setAttrKeyValue(.verticalGlyphForm, vert); return self; }
+	func attr(vert: Bool) -> UILabel { self.attrTxt = setAttrKeyValue(.verticalGlyphForm, vert); return self; }
 
-	func attr(align: NSTextAlignment) 	-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.alignment = align; }); return self; };
-	func attr(wrap: NSLineBreakMode) 		-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.lineBreakMode = wrap; }); return self; };
-	func attr(lineSpacing: CGFloat) 		-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
-	func attr(paraSpacing: CGFloat) 		-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
-	func attr(firstIndent: CGFloat) 		-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
-	func attr(headIndent: CGFloat) 			-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.headIndent = headIndent; }); return self; };
-	func attr(tailIndent: CGFloat) 			-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.tailIndent = tailIndent; }); return self; };
-	func attr(minH: CGFloat) 						-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.minimumLineHeight = minH; }); return self; };
-	func attr(maxH: CGFloat) 						-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.maximumLineHeight = maxH; }); return self; };
-	func attr(dir: NSWritingDirection) 	-> UILabel { self.attrTxt = setAttrParaStyle({ style in style.baseWritingDirection = dir; }); return self; };
+	func attr(align: NSTextAlignment) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.alignment = align; }); return self; };
+	func attr(wrap: NSLineBreakMode) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.lineBreakMode = wrap; }); return self; };
+	func attr(lineSpacing: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
+	func attr(paraSpacing: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
+	func attr(firstIndent: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
+	func attr(headIndent: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.headIndent = headIndent; }); return self; };
+	func attr(tailIndent: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.tailIndent = tailIndent; }); return self; };
+	func attr(minH: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.minimumLineHeight = minH; }); return self; };
+	func attr(maxH: CGFloat) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.maximumLineHeight = maxH; }); return self; };
+	func attr(dir: NSWritingDirection) -> UILabel { self.attrTxt = setAttrParaStyle({ style in style.baseWritingDirection = dir; }); return self; };
 
 	private func setAttrKeyValue(_ key: NSAttributedString.Key?,_ value: Any) -> NSAttributedString {
 		let oldtxt = self.attrTxt;
@@ -284,14 +283,14 @@ public extension UITextField {
 		case placeholder;
 	};
 
-	func attr(txt: String, clr: UIColor,_ target: __attr_target) 													-> UITextField { self.attr(txt: txt, target).attr(clr: clr, target); };
-	func attr(txt: String, hex: String,_ target: __attr_target) 													-> UITextField { self.attr(txt: txt, target).attr(hex: hex, target); };
-	func attr(txt: String, rgb: String,_ target: __attr_target) 													-> UITextField { self.attr(txt: txt, target).attr(rgb: rgb, target); };
-	func attr(txt: String, clr: UIColor, align: NSTextAlignment,_ target: __attr_target) 	-> UITextField { self.attr(txt: txt, target).attr(clr: clr, target).attr(align: align, target); };
-	func attr(txt: String, hex: String, align: NSTextAlignment,_ target: __attr_target) 	-> UITextField { self.attr(txt: txt, target).attr(hex: hex, target).attr(align: align, target); };
-	func attr(txt: String, rgb: String, align: NSTextAlignment,_ target: __attr_target) 	-> UITextField { self.attr(txt: txt, target).attr(rgb: rgb, target).attr(align: align, target); };
+	func attr(txt: String, clr: UIColor,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(clr: clr, target); };
+	func attr(txt: String, hex: String,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(hex: hex, target); };
+	func attr(txt: String, rgb: String,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(rgb: rgb, target); };
+	func attr(txt: String, clr: UIColor, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(clr: clr, target).attr(align: align, target); };
+	func attr(txt: String, hex: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(hex: hex, target).attr(align: align, target); };
+	func attr(txt: String, rgb: String, align: NSTextAlignment,_ target: __attr_target) -> UITextField { self.attr(txt: txt, target).attr(rgb: rgb, target).attr(align: align, target); };
 
-	func attr(txt: String,_ target: __attr_target) 																-> UITextField {
+	func attr(txt: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(nil, txt);
 		}
@@ -300,7 +299,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(ligature: Bool,_ target: __attr_target) 														-> UITextField {
+	func attr(ligature: Bool,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.ligature, ligature);
 		} else {
@@ -308,7 +307,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(font: UIFont,_ target: __attr_target) 															-> UITextField {
+	func attr(font: UIFont,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, font);
 		} else {
@@ -316,7 +315,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(name: String, size: CGFloat,_ target: __attr_target) 								-> UITextField {
+	func attr(name: String, size: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: size) ?? defaultFont);
 		} else {
@@ -324,7 +323,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(name: String,_ target: __attr_target) 															-> UITextField {
+	func attr(name: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: self.fontSize) ?? defaultFont);
 		} else {
@@ -332,7 +331,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(size: CGFloat,_ target: __attr_target) 															-> UITextField {
+	func attr(size: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont(name: self.fontName, size: size) ?? defaultFont);
 		} else {
@@ -340,7 +339,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(size: CGFloat, weight: UIFont.Weight,_ target: __attr_target) 			-> UITextField {
+	func attr(size: CGFloat, weight: UIFont.Weight,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: size, weight: weight));
 		} else {
@@ -348,7 +347,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(weight: UIFont.Weight,_ target: __attr_target) 											-> UITextField {
+	func attr(weight: UIFont.Weight,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: self.fontSize, weight: weight));
 		} else {
@@ -356,7 +355,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(italic size: CGFloat,_ target: __attr_target) 											-> UITextField {
+	func attr(italic size: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.font, UIFont.italicSystemFont(ofSize: size));
 		} else {
@@ -364,7 +363,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(clr: UIColor,_ target: __attr_target) 															-> UITextField {
+	func attr(clr: UIColor,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.foregroundColor, clr);
 		} else {
@@ -372,7 +371,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(hex: String,_ target: __attr_target) 																-> UITextField {
+	func attr(hex: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(hex: hex));
 		} else {
@@ -380,7 +379,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(rgb: String,_ target: __attr_target) 																-> UITextField {
+	func attr(rgb: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(rgb: rgb));
 		} else {
@@ -388,7 +387,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(bgClr: UIColor,_ target: __attr_target) 														-> UITextField {
+	func attr(bgClr: UIColor,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.backgroundColor, bgClr);
 		} else {
@@ -396,7 +395,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(bgHex: String,_ target: __attr_target) 															-> UITextField {
+	func attr(bgHex: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(hex: bgHex));
 		} else {
@@ -404,7 +403,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(bgRgb: String,_ target: __attr_target) 															-> UITextField {
+	func attr(bgRgb: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(rgb: bgRgb));
 		} else {
@@ -412,7 +411,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(charSpacing: CGFloat,_ target: __attr_target) 											-> UITextField {
+	func attr(charSpacing: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.kern, charSpacing);
 		} else {
@@ -420,7 +419,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(strike: NSUnderlineStyle,_ target: __attr_target) 									-> UITextField {
+	func attr(strike: NSUnderlineStyle,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.strikethroughStyle, NSNumber(value: strike.rawValue));
 		} else {
@@ -428,7 +427,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(strikeClr: UIColor,_ target: __attr_target) 												-> UITextField {
+	func attr(strikeClr: UIColor,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.strikethroughColor, strikeClr);
 		} else {
@@ -436,7 +435,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(under: NSUnderlineStyle,_ target: __attr_target) 										-> UITextField {
+	func attr(under: NSUnderlineStyle,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.underlineStyle, NSNumber(value: under.rawValue));
 		} else {
@@ -444,7 +443,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(underClr: UIColor,_ target: __attr_target) 													-> UITextField {
+	func attr(underClr: UIColor,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.underlineColor, underClr);
 		} else {
@@ -452,7 +451,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(stokeW: CGFloat,_ target: __attr_target) 														-> UITextField {
+	func attr(stokeW: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.strokeWidth, stokeW);
 		} else {
@@ -460,7 +459,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(stokeClr: UIColor,_ target: __attr_target) 													-> UITextField {
+	func attr(stokeClr: UIColor,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.strokeColor, stokeClr);
 		} else {
@@ -468,7 +467,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(offset: CGFloat,_ target: __attr_target) 														-> UITextField {
+	func attr(offset: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.baselineOffset, offset);
 		} else {
@@ -476,7 +475,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(url: String,_ target: __attr_target) 																-> UITextField {
+	func attr(url: String,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.link, url);
 		} else {
@@ -484,7 +483,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(url: URL,_ target: __attr_target) 																	-> UITextField {
+	func attr(url: URL,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.link, url);
 		} else {
@@ -492,7 +491,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(oblique: CGFloat,_ target: __attr_target) 													-> UITextField {
+	func attr(oblique: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.obliqueness, oblique > 1 ? 1 : oblique);
 		} else {
@@ -500,7 +499,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(expand: CGFloat,_ target: __attr_target) 														-> UITextField {
+	func attr(expand: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.expansion, expand);
 		} else {
@@ -516,7 +515,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(vert: Bool,_ target: __attr_target) 																-> UITextField {
+	func attr(vert: Bool,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrKeyValue(.verticalGlyphForm, vert);
 		} else {
@@ -525,7 +524,7 @@ public extension UITextField {
 		return self;
 	};
 
-	func attr(align: NSTextAlignment,_ target: __attr_target) 	-> UITextField {
+	func attr(align: NSTextAlignment,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.alignment = align; });
 		} else {
@@ -533,7 +532,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(wrap: NSLineBreakMode,_ target: __attr_target) 		-> UITextField {
+	func attr(wrap: NSLineBreakMode,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.lineBreakMode = wrap; });
 		} else {
@@ -541,7 +540,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(lineSpacing: CGFloat,_ target: __attr_target) 		-> UITextField {
+	func attr(lineSpacing: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.lineSpacing = lineSpacing; });
 		} else {
@@ -549,7 +548,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(paraSpacing: CGFloat,_ target: __attr_target) 		-> UITextField {
+	func attr(paraSpacing: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.paragraphSpacing = paraSpacing; });
 		} else {
@@ -557,7 +556,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(firstIndent: CGFloat,_ target: __attr_target) 		-> UITextField {
+	func attr(firstIndent: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.firstLineHeadIndent = firstIndent; });
 		} else {
@@ -565,7 +564,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(headIndent: CGFloat,_ target: __attr_target) 			-> UITextField {
+	func attr(headIndent: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.headIndent = headIndent; });
 		} else {
@@ -573,7 +572,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(tailIndent: CGFloat,_ target: __attr_target) 			-> UITextField {
+	func attr(tailIndent: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.tailIndent = tailIndent; });
 		} else {
@@ -581,7 +580,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(minH: CGFloat,_ target: __attr_target) 						-> UITextField {
+	func attr(minH: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.minimumLineHeight = minH; });
 		} else {
@@ -589,7 +588,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(maxH: CGFloat,_ target: __attr_target) 						-> UITextField {
+	func attr(maxH: CGFloat,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.maximumLineHeight = maxH; });
 		} else {
@@ -597,7 +596,7 @@ public extension UITextField {
 		};
 		return self;
 	};
-	func attr(dir: NSWritingDirection,_ target: __attr_target) 	-> UITextField {
+	func attr(dir: NSWritingDirection,_ target: __attr_target) -> UITextField {
 		if (target == .text) {
 			self.attrTxt = setAttrParaStyle({ style in style.baseWritingDirection = dir; });
 		} else {
@@ -722,53 +721,53 @@ extension UITextView {
 
 	var attrTxt: NSAttributedString { get { return self.attributedText ?? NSAttributedString(string: self.text ?? "") } set { self.attributedText = newValue } };
 
-	func attr(txt: String, clr: UIColor) 													-> UITextView { self.attr(txt: txt).attr(clr: clr); };
-	func attr(txt: String, hex: String) 													-> UITextView { self.attr(txt: txt).attr(hex: hex); };
-	func attr(txt: String, rgb: String) 													-> UITextView { self.attr(txt: txt).attr(rgb: rgb); };
-	func attr(txt: String, clr: UIColor, align: NSTextAlignment) 	-> UITextView { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
-	func attr(txt: String, hex: String, align: NSTextAlignment) 	-> UITextView { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
-	func attr(txt: String, rgb: String, align: NSTextAlignment) 	-> UITextView { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
+	func attr(txt: String, clr: UIColor) -> UITextView { self.attr(txt: txt).attr(clr: clr); };
+	func attr(txt: String, hex: String) -> UITextView { self.attr(txt: txt).attr(hex: hex); };
+	func attr(txt: String, rgb: String) -> UITextView { self.attr(txt: txt).attr(rgb: rgb); };
+	func attr(txt: String, clr: UIColor, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(clr: clr).attr(align: align); };
+	func attr(txt: String, hex: String, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(hex: hex).attr(align: align); };
+	func attr(txt: String, rgb: String, align: NSTextAlignment) -> UITextView { self.attr(txt: txt).attr(rgb: rgb).attr(align: align); };
 
-	func attr(txt: String) 																-> UITextView { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
-	func attr(ligature: Bool) 														-> UITextView { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
-	func attr(font: UIFont) 															-> UITextView { self.attrTxt = setAttrKeyValue(.font, font); return self; };
-	func attr(name: String, size: CGFloat) 								-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
-	func attr(name: String) 															-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: self.fontSize) ?? defaultFont); return self; };
-	func attr(size: CGFloat) 															-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: self.fontName, size: size) ?? defaultFont); return self; };
-	func attr(size: CGFloat, weight: UIFont.Weight) 			-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
-	func attr(weight: UIFont.Weight) 											-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: self.fontSize, weight: weight)); return self; };
-	func attr(italic size: CGFloat) 											-> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
-	func attr(clr: UIColor) 															-> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, clr); return self; };
-	func attr(hex: String) 																-> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(hex: hex)); return self; };
-	func attr(rgb: String) 																-> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
-	func attr(bgClr: UIColor) 														-> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, bgClr); return self; };
-	func attr(bgHex: String) 															-> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
-	func attr(bgRgb: String) 															-> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
-	func attr(charSpacing: CGFloat) 											-> UITextView { self.attrTxt = setAttrKeyValue(.kern, charSpacing); return self; };
-	func attr(strike: NSUnderlineStyle) 									-> UITextView { self.attrTxt = setAttrKeyValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; };
-	func attr(strikeClr: UIColor) 												-> UITextView { self.attrTxt = setAttrKeyValue(.strikethroughColor, strikeClr); return self; };
-	func attr(under: NSUnderlineStyle) 										-> UITextView { self.attrTxt = setAttrKeyValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; };
-	func attr(underClr: UIColor) 													-> UITextView { self.attrTxt = setAttrKeyValue(.underlineColor, underClr); return self; };
-	func attr(stokeW: CGFloat) 														-> UITextView { self.attrTxt = setAttrKeyValue(.strokeWidth, stokeW); return self; };
-	func attr(stokeClr: UIColor) 													-> UITextView { self.attrTxt = setAttrKeyValue(.strokeColor, stokeClr); return self; };
-	func attr(offset: CGFloat) 														-> UITextView { self.attrTxt = setAttrKeyValue(.baselineOffset, offset); return self; };
-	func attr(url: String) 																-> UITextView { self.attrTxt = setAttrKeyValue(.link, url); return self; };
-	func attr(url: URL) 																	-> UITextView { self.attrTxt = setAttrKeyValue(.link, url); return self; };
-	func attr(oblique: CGFloat) 													-> UITextView { self.attrTxt = setAttrKeyValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; };
-	func attr(expand: CGFloat) 														-> UITextView { self.attrTxt = setAttrKeyValue(.expansion, expand); return self; };
+	func attr(txt: String) -> UITextView { self.attrTxt = setAttrKeyValue(nil, txt); return self; };
+	func attr(ligature: Bool) -> UITextView { self.attrTxt = setAttrKeyValue(.ligature, ligature); return self; };
+	func attr(font: UIFont) -> UITextView { self.attrTxt = setAttrKeyValue(.font, font); return self; };
+	func attr(name: String, size: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: size) ?? defaultFont); return self; };
+	func attr(name: String) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: name, size: self.fontSize) ?? defaultFont); return self; };
+	func attr(size: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont(name: self.fontName, size: size) ?? defaultFont); return self; };
+	func attr(size: CGFloat, weight: UIFont.Weight) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: size, weight: weight)); return self; };
+	func attr(weight: UIFont.Weight) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.systemFont(ofSize: self.fontSize, weight: weight)); return self; };
+	func attr(italic size: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.font, UIFont.italicSystemFont(ofSize: size)); return self; };
+	func attr(clr: UIColor) -> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, clr); return self; };
+	func attr(hex: String) -> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(hex: hex)); return self; };
+	func attr(rgb: String) -> UITextView { self.attrTxt = setAttrKeyValue(.foregroundColor, UIColor(rgb: rgb)); return self; };
+	func attr(bgClr: UIColor) -> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, bgClr); return self; };
+	func attr(bgHex: String) -> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(hex: bgHex)); return self; };
+	func attr(bgRgb: String) -> UITextView { self.attrTxt = setAttrKeyValue(.backgroundColor, UIColor(rgb: bgRgb)); return self; };
+	func attr(charSpacing: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.kern, charSpacing); return self; };
+	func attr(strike: NSUnderlineStyle) -> UITextView { self.attrTxt = setAttrKeyValue(.strikethroughStyle, NSNumber(value: strike.rawValue)); return self; };
+	func attr(strikeClr: UIColor) -> UITextView { self.attrTxt = setAttrKeyValue(.strikethroughColor, strikeClr); return self; };
+	func attr(under: NSUnderlineStyle) -> UITextView { self.attrTxt = setAttrKeyValue(.underlineStyle, NSNumber(value: under.rawValue)); return self; };
+	func attr(underClr: UIColor) -> UITextView { self.attrTxt = setAttrKeyValue(.underlineColor, underClr); return self; };
+	func attr(stokeW: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.strokeWidth, stokeW); return self; };
+	func attr(stokeClr: UIColor) -> UITextView { self.attrTxt = setAttrKeyValue(.strokeColor, stokeClr); return self; };
+	func attr(offset: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.baselineOffset, offset); return self; };
+	func attr(url: String) -> UITextView { self.attrTxt = setAttrKeyValue(.link, url); return self; };
+	func attr(url: URL) -> UITextView { self.attrTxt = setAttrKeyValue(.link, url); return self; };
+	func attr(oblique: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.obliqueness, oblique > 1 ? 1 : oblique); return self; };
+	func attr(expand: CGFloat) -> UITextView { self.attrTxt = setAttrKeyValue(.expansion, expand); return self; };
 	func attr(effect: NSAttributedString.TextEffectStyle) -> UITextView { self.attrTxt = setAttrKeyValue(.textEffect, effect); return self; };
-	func attr(vert: Bool) 																-> UITextView { self.attrTxt = setAttrKeyValue(.verticalGlyphForm, vert); return self; };
+	func attr(vert: Bool) -> UITextView { self.attrTxt = setAttrKeyValue(.verticalGlyphForm, vert); return self; };
 
-	func attr(align: NSTextAlignment) 	-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.alignment = align; }); return self; };
-	func attr(wrap: NSLineBreakMode) 		-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.lineBreakMode = wrap; }); return self; };
-	func attr(lineSpacing: CGFloat) 		-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
-	func attr(paraSpacing: CGFloat) 		-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
-	func attr(firstIndent: CGFloat) 		-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
-	func attr(headIndent: CGFloat) 			-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.headIndent = headIndent; }); return self; };
-	func attr(tailIndent: CGFloat) 			-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.tailIndent = tailIndent; }); return self; };
-	func attr(minH: CGFloat) 						-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.minimumLineHeight = minH; }); return self; };
-	func attr(maxH: CGFloat) 						-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.maximumLineHeight = maxH; }); return self; };
-	func attr(dir: NSWritingDirection) 	-> UITextView { self.attrTxt = setAttrParaStyle({ style in style.baseWritingDirection = dir; }); return self; };
+	func attr(align: NSTextAlignment) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.alignment = align; }); return self; };
+	func attr(wrap: NSLineBreakMode) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.lineBreakMode = wrap; }); return self; };
+	func attr(lineSpacing: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.lineSpacing = lineSpacing; }); return self; };
+	func attr(paraSpacing: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.paragraphSpacing = paraSpacing; }); return self; };
+	func attr(firstIndent: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.firstLineHeadIndent = firstIndent; }); return self; };
+	func attr(headIndent: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.headIndent = headIndent; }); return self; };
+	func attr(tailIndent: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.tailIndent = tailIndent; }); return self; };
+	func attr(minH: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.minimumLineHeight = minH; }); return self; };
+	func attr(maxH: CGFloat) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.maximumLineHeight = maxH; }); return self; };
+	func attr(dir: NSWritingDirection) -> UITextView { self.attrTxt = setAttrParaStyle({ style in style.baseWritingDirection = dir; }); return self; };
 
 	private func setAttrKeyValue(_ key: NSAttributedString.Key?,_ value: Any) -> NSAttributedString {
 		let oldtxt = self.attrTxt;
