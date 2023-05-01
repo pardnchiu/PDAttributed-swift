@@ -4,8 +4,6 @@
 
 適用於UILabel、UIButton、UITextView、UITextField
 
-***
-
 ![](./demo.png)
 
 ***
