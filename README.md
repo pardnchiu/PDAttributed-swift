@@ -1,6 +1,14 @@
-#### 參數
+# PDAttributed
+
+簡化Swift 設定NSAttributedString 的步驟
+
+適用於UILabel、UIButton、UITextView、UITextField
+
+***
 
 ```
+參數
+
 顏色 HEX（字串 ex. "ff0000"）
 顏色 RGB（字串 ex. "255/0/0"）
 
@@ -52,48 +60,63 @@ maxH         最高行高
 dir          書寫方向
 ```
 
-#### 範例
-![PDAttribute Swift 範例](./sample.jpg)
+***
 
-```
+```swift
 // MARK: 簡化前
 
-let label = UILabel(frame: CGRect(x: 0, y: 100, width: 300, height: 100));
-label.backgroundColor = .red;
+let vw = UIScreen.main.bounds.size.width;
+
+let label = UILabel(frame: CGRect(x: (vw - 300) / 2, y: 100, width: 300, height: 100));
+label.backgroundColor = .gray;
+view.addSubview(label);
 
 let style = NSMutableParagraphStyle();
 style.alignment = .center;
-style.lineBreakMode = .byTruncatingTail;
 style.minimumLineHeight = 80
 
 let attributes: [NSAttributedString.Key:Any] = [
     .paragraphStyle: style,
-    .kern: 11,
-    .font: UIFont.systemFont(ofSize: 17, weight: .bold),
-    .foregroundColor: UIColor.yellow,
+    .kern: 10,
+    .font: UIFont.systemFont(ofSize: 30, weight: .bold),
+    .foregroundColor: UIColor.white,
     .strikethroughStyle: NSNumber(value: NSUnderlineStyle.double.rawValue),
-    .strikethroughColor: UIColor.green,
+    .strikethroughColor: UIColor.red,
     .underlineStyle: NSNumber(value: NSUnderlineStyle.single.rawValue),
-    .underlineColor: UIColor.blue,
+    .underlineColor: UIColor.yellow,
     .baselineOffset: 30
 ];
 label.attributedText = NSAttributedString(string: "測試文字", attributes: attributes);
 ```
 
-```
+***
+
+```swift
 // MARK: 簡化後
-var label = UILabel(frame: CGRect(x: 0, y: 100, width: 300, height: 100));
-label.backgroundColor = .red;
+
+let vw = UIScreen.main.bounds.size.width;
+
+let label = UILabel(frame: CGRect(x: (vw - 300) / 2, y: 100, width: 300, height: 100));
+label.backgroundColor = .gray;
+view.addSubview(label);
+
 label
-    .attr(txt: "測試文字", clr: .yellow, align: .center)
-    .attr(size: 17, weight: .bold)
-    .attr(wrap: .byTruncatingTail)
+    .attr(txt: "測試文字", clr: .white, align: .center)
+    .attr(size: 30, weight: .bold)
     .attr(strike: .double)
-    .attr(strikeClr: .green)
+    .attr(strikeClr: .red)
     .attr(under: .single)
-    .attr(underClr: .blue)
-    .attr(charSpacing: 11)
+    .attr(underClr: .yellow)
+    .attr(charSpacing: 10)
     .attr(minH: 80)
     .attr(offset: 30)
     .end();
 ```
+
+***
+
+![](./demo.png)
+
+***
+
+Copyright (c) 2023 [Pardn Ltd 帕登國際有限公司](https://joball.tw/@pardnltd)
